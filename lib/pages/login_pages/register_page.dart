@@ -20,34 +20,47 @@ class RegisterPage extends StatelessWidget {
       child: Scaffold(
         body: GradientContainer(
           childs: Padding(
-            padding: EdgeInsets.symmetric(horizontal: App_size.app_width*0.01),
-            child: ListView(
+            padding:
+                EdgeInsets.symmetric(horizontal: App_size.app_width * 0.02),
+            child: Column(
               children: [
-
-                SizedBox(height: App_size.app_height*0.1),
+                SizedBox(height: App_size.app_height * 0.1),
 
                 // ------------ page name ie sign up/ register
                 Center(
-                  child: Text("Sign Up / Register",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: App_size.app_height* 0.04,
-                  ),
+                  child: Text(
+                    "Sign Up / Register",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: App_size.app_height * 0.02,
+                    ),
                   ),
                 ),
 
-                SizedBox(height: App_size.app_height* 0.06),
+                SizedBox(height: App_size.app_height * 0.01),
 
                 // -------------- textfield to fill up credential
-                TextField_(label: "Email", visible: false, text_controller: email,),
-                TextField_(label: "Password", visible: true, text_controller: password,),
-                TextField_(label: "Confirm password", visible: true, text_controller: confirm_password,),
+                TextField_(
+                  label: "Email",
+                  visible: false,
+                  text_controller: email,
+                ),
+                TextField_(
+                  label: "Password",
+                  visible: true,
+                  text_controller: password,
+                ),
+                TextField_(
+                  label: "Confirm password",
+                  visible: true,
+                  text_controller: confirm_password,
+                ),
 
-                SizedBox(height: App_size.app_height* 0.06),
+                SizedBox(height: App_size.app_height * 0.01),
 
                 //sign up button
-                Center(child: Button(button_name: "Sign Up", submit: (){})),
-                SizedBox(height: App_size.app_height* 0.04),
+                Center(child: Button(button_name: "Sign Up", submit: () {})),
+                SizedBox(height: App_size.app_height * 0.01),
 
                 // divider section ie divides screen into 2 halves
                 Row(
@@ -55,104 +68,107 @@ class RegisterPage extends StatelessWidget {
                     Expanded(
                       child: Divider(
                         color: Colors.black,
-                        height: App_size.app_height*0.1,
-                        thickness: App_size.app_width*0.0050,
+                        height: App_size.app_height * 0.1,
+                        thickness: App_size.app_width * 0.002,
                       ),
                     ),
-
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: App_size.app_height* 0.02),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: App_size.app_height * 0.02),
                       child: Text(
                         "OR",
-                        style: TextStyle(fontSize: App_size.app_height*0.03, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: App_size.app_height * 0.01,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
-
                     Expanded(
                       child: Divider(
                         color: Colors.black,
-                        height: App_size.app_height*0.1,
-                        thickness: App_size.app_width*0.0050,
+                        height: App_size.app_height * 0.1,
+                        thickness: App_size.app_width * 0.002,
                       ),
                     ),
                   ],
                 ),
-
 
                 //icons of authentication provider
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      child: Container(
-                        height: App_size.app_height* 0.08,
-                        child: Image.asset("images/google.png"),
-                      ),
-                      onTap: (){
-                        //authenticate using google
-                      }
-                    ),
-
+                        child: SizedBox(
+                          height: App_size.app_height * 0.03,
+                          child: Image.asset(
+                            "images/google.png",
+                          ),
+                        ),
+                        onTap: () {
+                          //authenticate using google
+                        }),
                     GestureDetector(
-                      child: Container(
-                        height: App_size.app_height* 0.08,
-                        child: Image.asset("images/facebook.png"),
-                      ),
-                      onTap: (){
-                        //authenticate using facebook
-                      }
-                    ),
-
+                        child: SizedBox(
+                          height: App_size.app_height * 0.03,
+                          child: Image.asset("images/facebook.png"),
+                        ),
+                        onTap: () {
+                          //authenticate using facebook
+                        }),
                     GestureDetector(
-                      child: Container(
-                        height: App_size.app_height* 0.08,
-                        child: Image.asset("images/twitter.png"),
-                      ),
-                      onTap: (){
-                        //authenticate using twitter
-                      }
-                    ),
+                        child: SizedBox(
+                          height: App_size.app_height * 0.03,
+                          child: Image.asset("images/twitter.png"),
+                        ),
+                        onTap: () {
+                          //authenticate using twitter
+                        }),
                   ],
                 ),
-                SizedBox(height: App_size.app_height*0.05),
+                SizedBox(height: App_size.app_height * 0.05),
 
                 // Register garis vanera sodhni section
-                Center(child: Text("Already have an account ? ", style: TextStyle(fontSize: App_size.app_height*0.03))),
+                Center(
+                    child: Text("Already have an account ? ",
+                        style: TextStyle(
+                          fontSize: App_size.app_height * 0.02,
+                        ))),
                 Center(
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       ontoggle();
                     },
                     child: Text(
-                      "Click here", style: TextStyle(color: Colors.red, fontSize: App_size.app_height*0.03),
+                      "Click here",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: App_size.app_height * 0.02,
+                      ),
                     ),
                   ),
                 ),
 
-                SizedBox(height: App_size.app_height*0.06),
+                SizedBox(height: App_size.app_height * 0.06),
 
                 // registration for resturant
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RegisterResturant()
-                      ),
+                          builder: (context) => RegisterResturant()),
                     );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Register as Resturant",
-                      style: TextStyle(fontSize: App_size.app_height*0.03),
+                      Text(
+                        "Register as Resturant",
+                        style: TextStyle(fontSize: App_size.app_height * 0.02),
                       ),
-
                       Icon(Icons.arrow_forward, color: Colors.red),
                     ],
                   ),
                 ),
-
               ],
             ),
           ),

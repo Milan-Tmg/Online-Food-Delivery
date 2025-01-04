@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import "package:flutter/material.dart";
 import "package:online_food_order/app_height_width.dart";
 
@@ -11,16 +13,21 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: App_size.app_height * 0.01, horizontal: App_size.app_width*0.1),
+        padding: EdgeInsets.symmetric(
+            vertical: App_size.app_height * 0.01,
+            horizontal: App_size.app_width * 0.1),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.red,
         ),
-      child: Text(button_name,
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: App_size.app_height*0.03),
-          ),
+        child: Text(
+          button_name,
+          style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: App_size.app_height * 0.02),
+        ),
       ),
-      onTap: (){},
+      onTap: () {},
     );
   }
 }

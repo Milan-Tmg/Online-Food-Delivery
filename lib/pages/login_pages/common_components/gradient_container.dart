@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class GradientContainer extends StatelessWidget {
@@ -9,10 +11,10 @@ class GradientContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [ Color(0xFFECD645),Color(0xFF7DD35B)],
+          colors: [Color(0xFFECD645), Color(0xFF7DD35B)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          stops:[0.15,0.8],
+          stops: [0.15, 0.8],
         ),
       ),
       child: childs,
