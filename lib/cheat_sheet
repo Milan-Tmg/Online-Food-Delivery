@@ -1,0 +1,6 @@
+--------- Jitendra section ------------
+login_pages vitra ko components are common for login_page and register_page.
+components like button , textField haru xa which is used by login and register page.
+sabai page ma MediaQuery use garna aalxi lagyo tei vayera app_height_width ma ek choti initalize garye paxi sabai ma use garna milxa
+
+--------- Milan section -----------------
