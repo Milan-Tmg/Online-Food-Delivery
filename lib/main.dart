@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:online_food_order/app_height_width.dart';
+import 'package:online_food_order/pages/splash_screen/splashScreen.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Myapp(),
+    theme: ThemeData(
+      colorScheme: ColorScheme.light(
+        primary: Colors.red,
+      ),
+    ),
+    home: Builder(
+      builder: (BuildContext context){
+        App_size(context: context);
+        return Splashscreen();
+      }
+    ),
   ));
 }
 
-class Myapp extends StatefulWidget {
-  const Myapp({super.key});
 
-  @override
-  State<Myapp> createState() => _MyappState();
-}
-
-class _MyappState extends State<Myapp> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
