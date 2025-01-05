@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_food_order/pages/home/home_page/homePage.dart';
 import 'package:online_food_order/pages/login_pages/common_components/button.dart';
 import 'package:online_food_order/pages/login_pages/common_components/gradient_container.dart';
 import "package:online_food_order/app_height_width.dart";
@@ -172,6 +173,16 @@ class RegisterPage extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Homepage(),
+              ),
+            );
+          }
         ),
       ),
     );
