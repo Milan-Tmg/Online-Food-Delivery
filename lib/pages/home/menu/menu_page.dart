@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:online_food_order/app_height_width.dart";
+import "package:online_food_order/pages/home/menu/food_items.dart";
 import "package:online_food_order/pages/home/menu/search_filter.dart";
 import "package:online_food_order/pages/home/menu/time.dart";
 
@@ -53,7 +54,7 @@ class MenuPage extends StatelessWidget {
             SearchFilter(),
             SizedBox(height: App_size.app_height*0.04),
 
-            // --------- displaying food items
+            // --------- divider (just divides page into two sectoins)
             Text("Food Items",
             style: TextStyle(fontSize: App_size.app_height*0.035, fontWeight: FontWeight.w500),
             ),
@@ -61,7 +62,10 @@ class MenuPage extends StatelessWidget {
           ],
         ),
 
-        //GridView(gridDelegate: gridDelegate)
+        // -------------- displaying food items
+        Expanded(
+          child: FoodItems(),
+        ),
       ],
     );
   }
