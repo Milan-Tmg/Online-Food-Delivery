@@ -35,6 +35,7 @@ class FoodItems extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Container(
+                      height: App_size.app_height*0.13,
                       child: Image.asset("images/place_holder.jpg"),
                     ),
                   ),

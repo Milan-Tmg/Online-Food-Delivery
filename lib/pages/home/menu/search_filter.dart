@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_food_order/app_height_width.dart';
+import 'package:online_food_order/pages/home/menu/filter/filter_main.dart';
 
 class SearchFilter extends StatelessWidget {
   const SearchFilter({super.key});
@@ -42,7 +43,7 @@ class SearchFilter extends StatelessWidget {
           child: InkWell(
             onTap: (){
               // range specify garna milxa
-              print("Yo wasup niga");
+              FilterMain(context);
             },
             child: Icon(Icons.tune, size: App_size.app_height*0.045),
           ),
