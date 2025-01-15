@@ -33,14 +33,14 @@ class _DistanceState extends State<Distance> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("Momo",
-          style: TextStyle(fontWeight: FontWeight.w400, fontSize: App_size.app_height * 0.036),
+        Text("Distance",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
         ),
 
         Row(
           children: [
             Change_distance(decrease_distance, Icons.remove),
-            Text("  $distance km  ", style: TextStyle(fontSize: App_size.app_height*0.035)),
+            Text("  $distance km  ", style: TextStyle(fontSize: 20)),
             Change_distance(increase_distance, Icons.add),
           ],
         ),
@@ -51,11 +51,11 @@ class _DistanceState extends State<Distance> {
 
 Widget Change_distance(VoidCallback func, IconData icon){
   return Container(
-    height: App_size.app_height*0.035,
-    width: App_size.app_height*0.035,
+    height: App_size.app_height*0.033,
+    width: App_size.app_height*0.033,
     color: Colors.black,
     child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: App_size.app_height*0.02),
+        icon: Icon(icon, color: Colors.white, size: App_size.app_height*0.015),
         onPressed: (){func();}
     ),
   );

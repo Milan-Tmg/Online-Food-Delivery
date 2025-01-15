@@ -7,7 +7,6 @@ Column Food_category(){
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
-      Text("Category", style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
 
       for(int i = 0; i < category.length/2; i++)...{
         Row(
@@ -26,7 +25,7 @@ Widget contain_category(String name){
   return Expanded(
     child: Container(
       margin: EdgeInsets.all(App_size.app_width * 0.03),
-      padding: EdgeInsets.all(App_size.app_width * 0.02),
+      padding: EdgeInsets.all(App_size.app_width * 0.01),
       child: Center(child: Text(name, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17))),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: 1),

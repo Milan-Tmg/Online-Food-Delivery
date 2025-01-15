@@ -52,7 +52,7 @@ Widget rating_structure(String rating_number, bool select_value){
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(" $rating_number", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+          Text(" $rating_number", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
           select_value ? Icon(Icons.star_border, color: Colors.white): Icon(Icons.star, color: Colors.red),
         ],
       ),
