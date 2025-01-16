@@ -8,13 +8,14 @@ class FoodItems extends ConsumerWidget {
   FoodItems({super.key});
 
   // dumbe api data
-  List<dynamic>api_data = [
+  List<dynamic> api_data = [
     {
-      "food_name" : "Momo",
-      "price": 200,
-      "resturant name ": "Xyz",
-      "picture" : "images/place_holder.jpg",
-      "discription": "Momo is a type of dumpling that originates from the Himalayan regions and is cherished for its simplicity, versatility, and delightful flavors",
+      "food_name": "Momo",
+      "price": 200.0,
+      "resturant name": "Xyz",
+      "picture": "images/place_holder.jpg",
+      "discription":
+          "Momo is a type of dumpling that originates from the Himalayan regions and is cherished for its simplicity, versatility, and delightful flavors",
     }
   ];
 
@@ -25,17 +26,25 @@ class FoodItems extends ConsumerWidget {
           crossAxisCount: 2,
           mainAxisSpacing: App_size.app_height * 0.03,
           crossAxisSpacing: App_size.app_height * 0.03,
-          childAspectRatio: 1/1.3,
+          childAspectRatio: 1 / 1.3,
         ),
-        children: List.generate(10,(index){
+        children: List.generate(10, (index) {
           return GestureDetector(
-
-            onTap: (){
-              ref.read(onCart_instance).inital_value(item_name: api_data[0]["food_name"],rate: api_data[0]["price"]);
+            onTap: () {
+              ref.read(onCart_instance).inital_value(
+                  item_name: api_data[0]["food_name"],
+                  rate: api_data[0]["price"],
+                  resturant_name: api_data[0]["resturant name"],
+                  image: api_data[0]["picture"],
+                  code: index);
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FoodDetails(api_data: api_data[0],)),
+                MaterialPageRoute(
+                    builder: (context) => FoodDetails(
+                          api_data: api_data[0],
+                          code: index,
+                        ))
               );
             },
             child: Container(
@@ -50,7 +59,7 @@ class FoodItems extends ConsumerWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Container(
-                      height: App_size.app_height*0.13,
+                      height: App_size.app_height * 0.13,
                       child: Image.asset("images/place_holder.jpg"),
                     ),
                   ),
@@ -67,7 +76,6 @@ class FoodItems extends ConsumerWidget {
               ),
             ),
           );
-        })
-    );
+        }));
   }
 }

@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-// voli yei bata milauxu
 
 final onCart_instance = ChangeNotifierProvider<onCart>((ref) => onCart());
 
 class onCart extends ChangeNotifier{
+  
+  Map<String, dynamic> resturants = {};
 
-  Map<String, double> item_on_cart = {};//Structure = momo : 1 ie 1 plate momo has been ordered
-  Map<String, double> item_rate = {}; // structure = momo = 200 ie 200 per plate
+  void inital_value({String? item_name, double? rate, String? resturant_name, String? image, int? code}){
 
-  void inital_value({String? item_name, double? rate}){
-    if(! item_on_cart.containsKey(item_name)){
-      item_on_cart[item_name!] = 0;
-      item_rate[item_name] = rate!;
-    }
-  }
-
-  void addOnCart({String? item_name}){
-
-    if(! item_on_cart.containsKey(item_name)){
-      item_on_cart[item_name!] = 1;
+    if(! resturants.containsKey(resturant_name)){
+      resturants[resturant_name!] = {};
+      resturants[resturant_name][code!] = {
+        "food_name" : item_name,
+        "price": rate,
+        "order": 0,
+        "image": image,
+      };
     }
     else{
-      item_on_cart[item_name!] = item_on_cart[item_name]! + 1;
+      if(! resturants[resturant_name].containsKey(code)){
+        resturants[resturant_name][code] = {
+          "food_name" : item_name,
+          "price": rate,
+          "order": 0,
+          "image": image,
+        };
+      }
     }
+   }
 
-    // if(! item_rate.containsKey(item_name)){
-    //   item_rate[item_name] = rate!;
-    // }
-    print(item_on_cart);
+  void addOnCart({String? resturant_name, int? code}){
+    resturants[resturant_name][code!]['order'] += 1;
+
     notifyListeners();
   }
 
-  void removeFromCart({String? item_name}){
+  void removeFromCart({String? resturant_name, int? code}){
 
-    if(item_on_cart.containsKey(item_name)){
-      if(item_on_cart[item_name]! >= 1)
-        item_on_cart[item_name!] = item_on_cart[item_name]! - 1;
+
+    if(resturants[resturant_name][code!]['order'] > 0){
+      resturants[resturant_name][code]["order"] --;
     }
     notifyListeners();
   }
 }
 
-//Resturant ko name and items info collect garxa
-class data_model{
-  String? resturant_name;
-  dynamic food_item_details = {}; // momo : {price: xxx, order_count : xxx}
-}
+

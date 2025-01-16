@@ -28,7 +28,7 @@ class Mycart extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     display_model(content: Text("Shop name"), show_trailing: false),
-                    display_model(content: content, show_trailing: show_trailing)
+                    //display_model(content: content, show_trailing: show_trailing)
 
                   ],
                 ),

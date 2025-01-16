@@ -14,10 +14,11 @@ import "package:online_food_order/pages/login_pages/common_components/gradient_c
 
 class FoodDetails extends ConsumerWidget {
 
-  FoodDetails({super.key, required this.api_data});
+  FoodDetails({super.key, required this.api_data, required this.code});
   dynamic api_data;
-  int food_count = 0;
-  int total_cost = 0;
+  int code;
+  // int food_count = 0;
+  // int total_cost = 0;
 
   // function to increase food_count
   // void increase_food_count(){
@@ -71,15 +72,15 @@ class FoodDetails extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Momo",
+                      Text(api_data["food_name"],
                         style: TextStyle(fontWeight: FontWeight.w400, fontSize: App_size.app_height * 0.036),
                       ),
 
                       Row(
                         children: [
-                          Change_food_count((){ref.read(onCart_instance).removeFromCart(item_name: "Momo");}, Icons.remove),
-                          Text("  ${ref.watch(onCart_instance).item_on_cart[api_data["food_name"]]}  ", style: TextStyle(fontSize: App_size.app_height*0.035)),
-                          Change_food_count((){ref.read(onCart_instance).addOnCart(item_name: api_data["food_name"]);}, Icons.add),
+                          Change_food_count((){ref.read(onCart_instance).removeFromCart(resturant_name: api_data["resturant name"],code: code);}, Icons.remove),
+                          Text("  ${ref.watch(onCart_instance).resturants[api_data["resturant name"]][code]["order"]}  ", style: TextStyle(fontSize: App_size.app_height*0.035)),
+                          Change_food_count((){ref.read(onCart_instance).addOnCart(resturant_name: api_data["resturant name"], code: code);}, Icons.add),
 
                         ],
                       ),
@@ -121,7 +122,7 @@ class FoodDetails extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total Cost : \n Rs ${ref.watch(onCart_instance).item_on_cart[api_data["food_name"]]! * ref.watch(onCart_instance).item_rate[api_data["food_name"]]!}",
+                      "Total Cost : \n Rs ${ref.watch(onCart_instance).resturants[api_data["resturant name"]][code]["order"]! * api_data["price"]}",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
 
