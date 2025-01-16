@@ -1,39 +1,45 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:online_food_order/Statemangement/state_mangement.dart";
 import "package:online_food_order/app_height_width.dart";
+import "package:online_food_order/pages/home/My_cart/MyCart.dart";
 import "package:online_food_order/pages/login_pages/common_components/gradient_container.dart";
 
-class FoodDetails extends StatefulWidget {
-  const FoodDetails({super.key});
+// class FoodDetails extends StatefulWidget {
+//   const FoodDetails({super.key});
+//
+//   @override
+//   State<FoodDetails> createState() => _FoodDetailsState();
+// }
 
-  @override
-  State<FoodDetails> createState() => _FoodDetailsState();
-}
+class FoodDetails extends ConsumerWidget {
 
-class _FoodDetailsState extends State<FoodDetails> {
-  int food_count = 0;
-  int rate = 200;
-  int total_cost = 0;
+  FoodDetails({super.key, required this.api_data, required this.code});
+  dynamic api_data;
+  int code;
+  // int food_count = 0;
+  // int total_cost = 0;
 
   // function to increase food_count
-  void increase_food_count(){
-    setState(() {
-      food_count ++;
-      total_cost = food_count * rate;
-    });
-  }
-
-  // function to decrease food_count
-  void decrease_food_count(){
-    setState(() {
-      food_count --;
-      if(food_count < 0){
-        food_count = 0;
-      }
-      total_cost = food_count * rate;
-    });
-  }
+  // void increase_food_count(){
+  //   setState(() {
+  //     food_count ++;
+  //     total_cost = food_count * food_items[0]["food_name"];
+  //   });
+  // }
+  //
+  // // function to decrease food_count
+  // void decrease_food_count(){
+  //   setState(() {
+  //     food_count --;
+  //     if(food_count < 0){
+  //       food_count = 0;
+  //     }
+  //     total_cost = food_count * food_items[0]["food_name"];
+  //   });
+  // }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
         body: GradientContainer(
@@ -56,7 +62,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                 // displays the image of food
                 Container(
                   height: App_size.app_height * 0.3,
-                  child: Image.asset("images/place_holder.jpg"),
+                  child: Center(child: Image.asset(api_data["picture"])),
                 ),
                 SizedBox(height: App_size.app_height* 0.04),
 
@@ -66,15 +72,15 @@ class _FoodDetailsState extends State<FoodDetails> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Momo",
+                      Text(api_data["food_name"],
                         style: TextStyle(fontWeight: FontWeight.w400, fontSize: App_size.app_height * 0.036),
                       ),
 
                       Row(
                         children: [
-                          Change_food_count(decrease_food_count, Icons.remove),
-                          Text("  $food_count  ", style: TextStyle(fontSize: App_size.app_height*0.035)),
-                          Change_food_count(increase_food_count, Icons.add),
+                          Change_food_count((){ref.read(onCart_instance).removeFromCart(resturant_name: api_data["resturant name"],code: code);}, Icons.remove),
+                          Text("  ${ref.watch(onCart_instance).resturants[api_data["resturant name"]][code]["order"]}  ", style: TextStyle(fontSize: App_size.app_height*0.035)),
+                          Change_food_count((){ref.read(onCart_instance).addOnCart(resturant_name: api_data["resturant name"], code: code);}, Icons.add),
 
                         ],
                       ),
@@ -88,11 +94,11 @@ class _FoodDetailsState extends State<FoodDetails> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: App_size.app_height*0.02),
                   child: Container(
-                    height: App_size.app_height* 0.3,
+                    height: App_size.app_height* 0.2,
                     child: ListView(
                        children: [
                          Text(
-                           "Momo is a type of dumpling that originates from the Himalayan regions and is cherished for its simplicity, versatility, and delightful flavors",
+                           api_data["discription"],
                            style: TextStyle(
                              fontSize: 17
                            ),
@@ -116,11 +122,19 @@ class _FoodDetailsState extends State<FoodDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total Cost : \n Rs $total_cost",
+                      "Total Cost : \n Rs ${ref.watch(onCart_instance).resturants[api_data["resturant name"]][code]["order"]! * api_data["price"]}",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
 
                     GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Mycart(),
+                          ),
+                        );
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                         decoration: BoxDecoration(
@@ -148,7 +162,7 @@ Widget Change_food_count(VoidCallback func, IconData icon){
     width: App_size.app_height*0.035,
     color: Colors.black,
     child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: App_size.app_height*0.02),
+        icon: Icon(icon, color: Colors.white, size: App_size.app_height*0.017),
         onPressed: (){func();}
     ),
   );
