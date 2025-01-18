@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-
+// button which is used to apply selected filter on menu page
 class ApplyFilter extends StatelessWidget {
   const ApplyFilter({super.key});
 
