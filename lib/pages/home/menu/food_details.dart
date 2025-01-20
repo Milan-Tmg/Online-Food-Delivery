@@ -135,13 +135,20 @@ class FoodDetails extends ConsumerWidget {
                           ),
                         );
                       },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(15),
+                      child: GestureDetector(
+                        onTap: (){
+                          //need to fix snackbar , it is not appearing on the screen, styax error might have occured
+                          ScaffoldMessenger(child: SnackBar(content: Text("Item added to cart")));
+                          ref.read(onCart_instance).place_order(resturant_name: api_data["resturant name"], code: code);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child : Text("Add to Cart", style: TextStyle(fontSize: 18)),
                         ),
-                        child : Text("Add to Cart", style: TextStyle(fontSize: 18)),
                       ),
                     ),
                   ],

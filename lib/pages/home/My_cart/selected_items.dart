@@ -7,14 +7,14 @@ class SelectedItems extends ConsumerWidget {
   SelectedItems({super.key, required this.resturant_name, required this.all_items});
 
   String resturant_name;
-  dynamic all_items; // contains all the food item of a resturant
+  Map<int,String> all_items; // contains all the food item of a resturant
   List<int> food_codes = [];
 
   // resturants_name : {code: { resturant_name, price, ....}}
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    food_codes = all_items.keys.toList().cast<int>();
+    food_codes = all_items.keys.toList();
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -28,8 +28,9 @@ class SelectedItems extends ConsumerWidget {
           padding: EdgeInsets.symmetric(horizontal: App_size.app_width* 0.01, vertical: App_size.app_width* 0.02),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: food_codes.map(( code){
-              return food_item(all_items[code],ref, resturant_name, code);
+            children: food_codes.map((code){
+              Map<String, dynamic> food_spec = ref.watch(onCart_instance).resturants[resturant_name][code];
+              return food_item(food_spec,ref, resturant_name, code);
             }).toList(),
           ),
         ),
@@ -102,6 +103,13 @@ Container food_item(food_spec,WidgetRef ref,String resturant_name, int code){
               ),
             ),
           ],
+        ),
+
+        IconButton(
+          icon: Icon(Icons.delete, color: Colors.red, size: App_size.app_width* 0.06),
+          onPressed: (){
+            ref.read(onCart_instance).remove_order_placed(resturant_name: resturant_name, code: code);
+          }
         ),
       ],
     ),

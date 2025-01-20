@@ -14,8 +14,8 @@ class Mycart extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    all_resturants = ref.watch(onCart_instance).resturants.keys.toList();
-    all_data = ref.watch(onCart_instance).resturants;
+    // all_resturants = ref.watch(onCart_instance).resturants.keys.toList();
+    // all_data = ref.watch(onCart_instance).resturants;
 
     print(all_resturants);
     print(all_data);
@@ -32,11 +32,10 @@ class Mycart extends ConsumerWidget {
 
               Divider(),
               SizedBox(height: App_size.app_height* 0.02),
-
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: ref.watch(onCart_instance).resturants.entries.map((data){
+                children: ref.watch(onCart_instance).order_placed.entries.map((data){
                   return SelectedItems(resturant_name: data.key, all_items: data.value);
                 }).toList()
               ),
