@@ -14,8 +14,8 @@ class Mycart extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    all_resturants = ref.watch(onCart_instance).resturants.keys.toList();
-    all_data = ref.watch(onCart_instance).resturants;
+    // all_resturants = ref.watch(onCart_instance).resturants.keys.toList();
+    // all_data = ref.watch(onCart_instance).resturants;
 
     print(all_resturants);
     print(all_data);
@@ -23,7 +23,7 @@ class Mycart extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         body: GradientContainer(
-          childs: ListView(
+          childs: Column(
             children: [
               Text(
                 "My Cart",
@@ -32,15 +32,85 @@ class Mycart extends ConsumerWidget {
 
               Divider(),
               SizedBox(height: App_size.app_height* 0.02),
-
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: ref.watch(onCart_instance).resturants.entries.map((data){
-                  return SelectedItems(resturant_name: data.key, all_items: data.value);
-                }).toList()
+              Container(
+                height: App_size.app_height * 0.53,
+                child: ListView(
+                  // mainAxisSize: MainAxisSize.min,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: ref.watch(onCart_instance).order_placed.entries.map((data){
+                    return SelectedItems(resturant_name: data.key, all_items: data.value);
+                  }).toList()
+                ),
               ),
 
+              //Spacer(),
+              Divider(),
+
+              // navigate to promo code
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Promo code: ", style: TextStyle(fontWeight : FontWeight.w500, fontSize: App_size.app_height * 0.025)),
+                  IconButton(
+                    icon: Icon(Icons.arrow_forward_ios_outlined, color: Colors.red, size: App_size.app_height* 0.025),
+                    onPressed: (){
+                      // I don't know where does this button navigate to
+                    }
+                  ),
+                ],
+              ),
+
+              // contains sub total, discount, delivery charge and net total with check out button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("Sub total: "),
+                          Text("Rs ${ref.watch(onCart_instance).total_price}", style: TextStyle(color: Colors.red)),
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("Delivery charge: "),
+                          Text("Rs 50", style: TextStyle(color: Colors.red)), // don't know on what basis delivery charge is calculated that's why we have constant value over here
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("Discount: "),
+                          Text("Rs 0 ", style : TextStyle(color: Colors.red)),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        padding: EdgeInsets.all(App_size.app_height* 0.015),
+                        child: Text("Check out"),
+                      ),
+
+                      onTap: (){
+                        // navigate to check out page
+                      }
+                    ),
+                  ),
+                ],
+              )
             ]
           ),
         ),
