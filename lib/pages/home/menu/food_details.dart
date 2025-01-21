@@ -138,7 +138,7 @@ class FoodDetails extends ConsumerWidget {
                       child: GestureDetector(
                         onTap: (){
                           //need to fix snackbar , it is not appearing on the screen, styax error might have occured
-                          ScaffoldMessenger(child: SnackBar(content: Text("Item added to cart")));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${api_data["food_name"]} is added to cart ")));
                           ref.read(onCart_instance).place_order(resturant_name: api_data["resturant name"], code: code);
                         },
                         child: Container(

@@ -8,6 +8,7 @@ class onCart extends ChangeNotifier{
   // fun fact :- resturants map was created to display order placed initially, in order to make code more effective order_placed map is created;;
   Map<String, dynamic> resturants = {};
   Map<String,Map<int,String>> order_placed = {}; // this map is used on "my cart" page;;
+  double total_price = 0; // used to store total price
 
   void inital_value({String? item_name, double? rate, String? resturant_name, String? image, int? code}){
     // this function enable user to view number of order they have placed on specific item from detail page
@@ -34,7 +35,7 @@ class onCart extends ChangeNotifier{
 
   void addOnCart({String? resturant_name, int? code}){ // used to increase product number
     resturants[resturant_name][code!]['order'] += 1;
-
+    get_totalPrice();
     notifyListeners();
   }
 
@@ -44,6 +45,7 @@ class onCart extends ChangeNotifier{
     if(resturants[resturant_name][code!]['order'] > 0){
       resturants[resturant_name][code]["order"] --;
     }
+    get_totalPrice();
     notifyListeners();
   }
 
@@ -54,7 +56,9 @@ class onCart extends ChangeNotifier{
     else{
       order_placed[resturant_name]![code!] = "yes";
     }
+    // need to figure out how can I solve this issue
     print("order : ${order_placed}");
+    get_totalPrice();
     notifyListeners();
   }
 
@@ -65,6 +69,20 @@ class onCart extends ChangeNotifier{
       order_placed.remove(resturant_name);
     }
     print("REmoved : $order_placed");
+    get_totalPrice();
+    notifyListeners();
+  }
+
+  void get_totalPrice(){
+    total_price = 0;
+    List<String> keys = order_placed.keys.toList();
+    for(int i = 0; i < keys.length; i++){
+      Map<int, String> values = order_placed[keys[i]]!;
+      List<int> final_values = values.keys.toList();
+      for(int j = 0; j < final_values.length; j++){
+        total_price += (resturants[keys[i]][final_values[j]]["price"]* resturants[keys[i]][final_values[j]]["order"]);
+      }
+    }
     notifyListeners();
   }
 }
