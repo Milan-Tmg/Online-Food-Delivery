@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_food_order/Statemangement/state_mangement.dart';
 import 'package:online_food_order/app_height_width.dart';
 import 'package:online_food_order/pages/home/My_cart/selected_items.dart';
+import 'package:online_food_order/pages/home/order_check_out/user_details.dart';
 import 'package:online_food_order/pages/login_pages/common_components/gradient_container.dart';
 
 class Mycart extends ConsumerWidget {
@@ -24,6 +25,7 @@ class Mycart extends ConsumerWidget {
       child: Scaffold(
         body: GradientContainer(
           childs: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "My Cart",
@@ -105,7 +107,10 @@ class Mycart extends ConsumerWidget {
                       ),
 
                       onTap: (){
-                        // navigate to check out page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UserDetails()),
+                        );
                       }
                     ),
                   ),
