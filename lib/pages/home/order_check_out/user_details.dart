@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_food_order/app_height_width.dart';
+import 'package:online_food_order/pages/home/order_check_out/bill.dart';
 import 'package:online_food_order/pages/login_pages/common_components/gradient_container.dart';
 
 class UserDetails extends StatelessWidget {
@@ -29,6 +30,10 @@ class UserDetails extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             // will do it later,
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Bill()),
+            );
           },
           child: Icon(Icons.arrow_forward_ios, color: Colors.red),
           backgroundColor: Colors.transparent,
