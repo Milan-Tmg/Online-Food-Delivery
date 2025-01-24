@@ -22,7 +22,7 @@ class SelectedItems extends ConsumerWidget {
       children :[
         Text(
           resturant_name,
-          style: TextStyle(fontSize: App_size.app_height * 0.04),
+          style: TextStyle(fontSize: App_size.app_height * 0.03),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: App_size.app_width* 0.01, vertical: App_size.app_width* 0.02),
